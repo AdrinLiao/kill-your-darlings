@@ -1,0 +1,960 @@
+<html lang="zh-Hant"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kill Your Darlings｜廣告業的掙扎與出走</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Helvetica Neue', 'Noto Sans TC', Arial, sans-serif;
+      background: #0d0d0d;
+      color: #e8e8e8;
+      line-height: 1.8;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0d0d0d 0%, #1a0a0a 50%, #0d0d0d 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(180,30,30,0.15) 0%, transparent 70%);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #c0392b;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      position: relative;
+      background: linear-gradient(135deg, #ffffff 30%, #c0392b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: #aaa;
+      max-width: 620px;
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-meta span {
+      font-size: 0.8rem;
+      color: #666;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-meta span strong {
+      color: #c0392b;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: #444;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-indicator .line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, #c0392b, transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* VIDEO EMBED */
+    .video-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #c0392b;
+      margin-bottom: 12px;
+    }
+
+    .video-section h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #222;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* INTRO BLOCK */
+    .intro-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .intro-section .lead {
+      font-size: 1.2rem;
+      color: #ccc;
+      border-left: 3px solid #c0392b;
+      padding-left: 20px;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+
+    .intro-section p {
+      color: #aaa;
+      margin-bottom: 16px;
+    }
+
+    /* CHAPTER LAYOUT */
+    .chapters {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    .chapters-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .chapters-sub {
+      color: #555;
+      margin-bottom: 48px;
+      font-size: 0.9rem;
+    }
+
+    .chapter {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 24px;
+      margin-bottom: 56px;
+      align-items: start;
+    }
+
+    .chapter-number {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #1e1e1e;
+      line-height: 1;
+      text-align: right;
+      padding-top: 4px;
+      user-select: none;
+      position: relative;
+    }
+
+    .chapter-number::after {
+      content: '';
+      position: absolute;
+      right: -12px;
+      top: 8px;
+      width: 2px;
+      height: 40px;
+      background: #c0392b;
+    }
+
+    .chapter-body h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .chapter-body .speaker {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c0392b;
+      margin-bottom: 12px;
+    }
+
+    .chapter-body p {
+      color: #999;
+      font-size: 0.95rem;
+    }
+
+    .chapter-body .quote-block {
+      margin: 16px 0;
+      padding: 16px 20px;
+      background: #161616;
+      border-left: 3px solid #c0392b;
+      border-radius: 0 8px 8px 0;
+      color: #ddd;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+
+    /* KEY FINDINGS */
+    .findings-section {
+      background: #111;
+      padding: 80px 20px;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .findings-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .findings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .finding-card {
+      background: #0d0d0d;
+      border: 1px solid #1e1e1e;
+      border-radius: 12px;
+      padding: 28px;
+      transition: border-color 0.3s;
+    }
+
+    .finding-card:hover {
+      border-color: #c0392b;
+    }
+
+    .finding-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .finding-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .finding-card p {
+      font-size: 0.88rem;
+      color: #777;
+      line-height: 1.7;
+    }
+
+    /* COMMENTS */
+    .comments-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .comments-intro {
+      color: #777;
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+      max-width: 600px;
+    }
+
+    .comment-card {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 20px;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+
+    .comment-card:hover {
+      border-color: #333;
+    }
+
+    .comment-card.critical {
+      border-left: 3px solid #c0392b;
+    }
+
+    .comment-card.resonance {
+      border-left: 3px solid #2ecc71;
+    }
+
+    .comment-card.question {
+      border-left: 3px solid #f39c12;
+    }
+
+    .comment-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .comment-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c0392b, #8e44ad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .comment-avatar.green {
+      background: linear-gradient(135deg, #27ae60, #2980b9);
+    }
+
+    .comment-avatar.gold {
+      background: linear-gradient(135deg, #f39c12, #e74c3c);
+    }
+
+    .comment-meta {
+      flex: 1;
+    }
+
+    .comment-meta .name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #ddd;
+    }
+
+    .comment-meta .date {
+      font-size: 0.75rem;
+      color: #555;
+    }
+
+    .comment-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .tag-critical { background: rgba(192,57,43,0.15); color: #c0392b; }
+    .tag-resonance { background: rgba(46,204,113,0.15); color: #2ecc71; }
+    .tag-question { background: rgba(243,156,18,0.15); color: #f39c12; }
+    .tag-insight { background: rgba(155,89,182,0.15); color: #9b59b6; }
+
+    .comment-original {
+      font-size: 0.8rem;
+      color: #444;
+      font-style: italic;
+      margin-bottom: 12px;
+      padding: 10px 14px;
+      background: #0d0d0d;
+      border-radius: 6px;
+      line-height: 1.6;
+    }
+
+    .comment-translation {
+      font-size: 0.92rem;
+      color: #bbb;
+      line-height: 1.75;
+    }
+
+    .likes-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      color: #555;
+      margin-top: 12px;
+    }
+
+    .likes-badge.hot {
+      color: #c0392b;
+    }
+
+    /* CONCLUSION */
+    .conclusion {
+      background: linear-gradient(135deg, #0d0d0d, #1a0505);
+      padding: 100px 20px;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    .conclusion-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .conclusion h2 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 24px;
+      line-height: 1.15;
+    }
+
+    .conclusion p {
+      color: #777;
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+
+    .conclusion .final-quote {
+      margin: 40px 0;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #ccc;
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+      padding: 28px 0;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: #333;
+      letter-spacing: 0.05em;
+    }
+
+    /* DIVIDER */
+    .divider {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #1e1e1e;
+    }
+
+    .divider span {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #444;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .chapter {
+        grid-template-columns: 1fr;
+      }
+      .chapter-number {
+        font-size: 2rem;
+        text-align: left;
+      }
+      .chapter-number::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">紀錄短片深度解析</p>
+    <h1>Kill Your<br>Darlings</h1>
+    <p class="hero-subtitle">一位廣告創意總監的迷惘、出走與重生——以及她一路上聽到的殘忍真相</p>
+    <div class="hero-meta">
+      <span>導演 <strong>Anouk Jans</strong></span>
+      <span>片長 <strong>約 38 分鐘</strong></span>
+      <span>受訪者 <strong>8+ 位業界人士</strong></span>
+    </div>
+    <div class="scroll-indicator">
+      <div class="line"></div>
+      <span>向下捲動</span>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="video-section">
+    <p class="section-label">觀看原片</p>
+    <h2>完整紀錄片</h2>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/voZManMHUpA" title="Kill Your Darlings - A documentary about the advertising industry" allowfullscreen="">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro-section">
+    <p class="section-label">關於這部片</p>
+    <p class="lead">「我以為這份工作會有更多創意空間，但時間的壓迫讓創意根本無處生長。」</p>
+    <p>Anouk Jans 是一家大型廣告代理商的創意總監。當初加入時，這對她來說宛如夢想成真。但幾個月過後，她幾乎每週工作七天，失去了家人與男友，也失去了靈感與熱情。</p>
+    <p>她決定踏上一段旅程，去拜訪業界最頂尖的思考者，試圖找回自己當初選擇廣告業的理由——卻聽到了一個比想像中更複雜、更令人不安的答案。</p>
+  </section>
+
+  <div class="divider"><span>影片內容逐章解析</span></div>
+
+  <!-- CHAPTERS -->
+  <section class="chapters">
+    <p class="section-label">故事脈絡</p>
+    <h2 class="chapters-title">八個關鍵對話</h2>
+    <p class="chapters-sub">按影片順序整理，幫助你掌握每段對話的核心</p>
+
+    <div class="chapter">
+      <div class="chapter-number">01</div>
+      <div class="chapter-body">
+        <p class="speaker">Scott Galloway｜商業預測家・《四騎士》作者</p>
+        <h3>廣告業的慢性死亡</h3>
+        <p>Anouk 第一個拜訪的人，給了她最殘酷的開場白。</p>
+        <div class="quote-block">「廣告業還會存在很長時間，但它將成為一個糟糕的工作和投資環境。預算每年縮減，在衰退的產業裡做到卓越，遠比在成長的產業裡優秀困難得多。」</div>
+        <p>他將廣告業比喻為黃頁電話簿——還有生意，但每年都在裁員。未來取代廣告的，將是能精準追蹤行為的 AI。最頂尖的人依然能活得好，但表現平庸的人將面臨極大困境。</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-number">02</div>
+      <div class="chapter-body">
+        <p class="speaker">Rob Reilly｜WPP 全球創意長</p>
+        <h3>巨頭體制內的日常崩潰</h3>
+        <p>全球四大廣告集團之一 WPP 的代表坦言，他每天都有人因無法承受壓力而崩潰。</p>
+        <div class="quote-block">「這個生態圈需要改變，不只是代理商，客戶、製作夥伴，所有人都要明白：我們可以創作出好作品，同時建立更有意義的合作流程。」</div>
+        <p>然而，他對「如何改變」的建議，卻只是：「如果你真的受不了，也許這個行業不適合你。」——一個讓許多人感到寒心的回答。</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-number">03</div>
+      <div class="chapter-body">
+        <p class="speaker">Bianca &amp; Greg｜Mischief 獨立代理商創辦人（紐約年度最佳廣告公司）</p>
+        <h3>逃離恐懼，重建關係</h3>
+        <p>這對離開大型代理商自立門戶的搭檔，說出了業界多年的病灶。</p>
+        <div class="quote-block">「過去幾年的廣告業是被恐懼驅動的——害怕失去客戶、害怕說錯話。去開會就像去打仗，這種負能量像病毒蔓延。」</div>
+        <p>他們的解方是：拒絕做最後才揭曉的「驚喜簡報」，改為全程與客戶透明溝通。最重要的是：只接他們喜歡的客戶——這在有股東壓力的大集團幾乎不可能做到。</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-number">04</div>
+      <div class="chapter-body">
+        <p class="speaker">Atlantic 創辦人｜辦公室設在船上的獨立代理商</p>
+        <h3>創意被系統吃掉的感覺</h3>
+        <div class="quote-block">「你感覺自己失去了掌控權與自由，這會摧毀你的熱情。那些系統是由不懂創意的人設計的。所有點子都在平台、流程、政治、賺錢邏輯的妥協中被消磨殆盡。」</div>
+        <p>他們描述了在大公司裡最令人窒息的場景：創意總監像國王般巡視，隨手指點牆上的提案，每個路過的人為了證明自己「有在工作」，都要說些無聊的意見。那些牆對他們來說，至今仍是心理創傷。</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-number">05</div>
+      <div class="chapter-body">
+        <p class="speaker">Jessica Spence｜Beam Suntory 品牌長（客戶視角）</p>
+        <h3>大型代理商不再是人才保證</h3>
+        <div class="quote-block">「我不在乎好點子從哪家公司來。大型廣告聯播網曾保證他們有最頂尖的人才，但現在這句話已經失效了。我選的不是代理商，而是具體的創意人。」</div>
+        <p>她指出，大公司因為文化、薪資與缺乏多元性，已不再是吸引頂尖人才的磁鐵。而她回顧職涯中最好的作品，都發生在她能與創意人直接、緊密互動的時候。</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-number">06</div>
+      <div class="chapter-body">
+        <p class="speaker">David Sable｜廣告業資深老將</p>
+        <h3>「代理商模式已死」？去你的</h3>
+        <p>身為這個模式的奠基者之一，David 對所有人的論調嗤之以鼻。</p>
+        <div class="quote-block">「那都是狗屎。自從我入行，就一直聽到『代理商模式壞了』。你去看那些喊著要有新模式的公司，他們的模式根本還是一樣！」</div>
+        <p>他認為問題不在模式，而在於人沒有為自己劃定界線。他建議所有廣告人效法他的猶太安息日，選一個時間徹底關機，而不是讓自己無止盡地被榨乾。</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-number">07</div>
+      <div class="chapter-body">
+        <p class="speaker">Cindy Gallop｜廣告業資深前輩・多元倡議者</p>
+        <h3>打破白人男性的封閉迴圈</h3>
+        <div class="quote-block">「這個產業的頂端，是一個白人男性在跟白人男性討論其他白人男性的封閉迴圈。他們表面上設立多元文化長、說很多多元的話，但骨子裡根本不想改變。」</div>
+        <p>她的建議直接而激進：女性與有色人種應該在體制外創業，建立真正想要的產業文化，逼迫舊體系去面對改變。她認為，你不是在「開一家代理商」，你是在「創造一個產業」。</p>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-number">08</div>
+      <div class="chapter-body">
+        <p class="speaker">Anselmo Ramos｜GUT 廣告公司創辦人・26 歲成為葛瑞最年輕創意總監</p>
+        <h3>把夢想寫下來，享受這趟旅程</h3>
+        <p>來自巴西、曾經不會說英文的 Anselmo，用自己的故事給了 Anouk 最後的鼓勵。</p>
+        <div class="quote-block">「把你的夢想寫下來，越瘋狂越好。寫下來的力量非常強大。然後享受這趟旅程，因為有一天你會無比懷念現在這個覺得一切皆有可能的起點。永遠不要對廣告感到憤世嫉俗。」</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- KEY FINDINGS -->
+  <section class="findings-section">
+    <div class="findings-inner">
+      <p class="section-label">核心議題</p>
+      <h2 style="font-size:2rem; font-weight:800; color:#fff; margin-bottom:8px;">這部片在說什麼？</h2>
+      <p style="color:#555; font-size:0.9rem;">四個貫穿全片的關鍵主題</p>
+      <div class="findings-grid">
+        <div class="finding-card">
+          <div class="finding-icon">🔥</div>
+          <h4>職業倦怠是結構性問題</h4>
+          <p>廣告業的過勞文化並非個人意志力不足，而是整個產業生態的設計問題——緊縮的預算、無止盡的比稿、對恐懼的依賴。</p>
+        </div>
+        <div class="finding-card">
+          <div class="finding-icon">🏛️</div>
+          <h4>大型代理商模式正在瓦解</h4>
+          <p>預算縮減、人才流失、無法吸引多元背景的新血，讓傳統 4A 廣告公司正面臨前所未有的信任危機與商業壓力。</p>
+        </div>
+        <div class="finding-card">
+          <div class="finding-icon">🚪</div>
+          <h4>獨立出走：解藥還是幻想？</h4>
+          <p>越來越多創意人選擇自立門戶，但批評者指出，換個形式創業並不等於解決問題——資本的邏輯依然存在。</p>
+        </div>
+        <div class="finding-card">
+          <div class="finding-icon">🌍</div>
+          <h4>多元性不是裝飾，是生存問題</h4>
+          <p>廣告業長期被同質化的權力結構把持，不只是道德問題，更是創意生命力枯竭的根本原因之一。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="padding-top:60px;"><span>觀眾真實回應</span></div>
+
+  <!-- COMMENTS -->
+  <section class="comments-section">
+    <p class="section-label">YouTube 留言翻譯</p>
+    <h2 style="font-size:2rem; font-weight:800; color:#fff; margin-bottom:16px;">業界人士怎麼說？</h2>
+    <p class="comments-intro">以下為影片底下真實留言的中文翻譯，呈現了來自世界各地廣告從業人員的多元聲音——從深深共鳴到強烈批判，都有。</p>
+
+    <!-- Comment 1 -->
+    <div class="comment-card resonance">
+      <div class="comment-header">
+        <div class="comment-avatar">P</div>
+        <div class="comment-meta">
+          <div class="name">@pabloagurtoquevedo8993</div>
+          <div class="date">2 年前・文案，15 年資歷</div>
+        </div>
+        <span class="comment-tag tag-resonance">深度共鳴</span>
+      </div>
+      <div class="comment-original">
+        "This hits me like a hook to the jaw... I've been a Copywriter for the last 15 years, and i'm having the feeling that i should quit this for the second time..."
+      </div>
+      <div class="comment-translation">
+        這部片擊中了我的下巴，像一記鉤拳，因為我現在正處於人生中第二次想離開廣告業的時刻。第一次，我帶著對整個產業的恨意離開了一年，後來因為懷念創作本身與同事間的情誼而回來。結果這次回來的體驗好到讓我又想離開了。我很清楚自己熱愛腦力激盪、熱愛寫作與思考，但對現在的代理商模式已提不起勁。我懷念剛入行時那種悸動，正在努力找回那份感覺。也許，這是我此生面臨的最大創意挑戰。
+      </div>
+    </div>
+
+    <!-- Comment 2 -->
+    <div class="comment-card critical">
+      <div class="comment-header">
+        <div class="comment-avatar" style="background:linear-gradient(135deg,#e74c3c,#c0392b);">B</div>
+        <div class="comment-meta">
+          <div class="name">@bri_____1970</div>
+          <div class="date">3 年前</div>
+        </div>
+        <span class="comment-tag tag-critical">直接批評</span>
+      </div>
+      <div class="comment-original">
+        "Pick your sabbath" my arse. Do that at a large agency and you'll get fired.
+      </div>
+      <div class="comment-translation">
+        那些什麼「選一個安息日」，去你的吧。在大型代理商試試看，你會被炒魷魚的。
+      </div>
+      <div class="likes-badge">👍 1</div>
+    </div>
+
+    <!-- Comment 3 -->
+    <div class="comment-card question">
+      <div class="comment-header">
+        <div class="comment-avatar gold">S</div>
+        <div class="comment-meta">
+          <div class="name">@skbche</div>
+          <div class="date">3 年前</div>
+        </div>
+        <span class="comment-tag tag-question">實際提問</span>
+      </div>
+      <div class="comment-original">
+        "This is cool BUT. How do Advertising creatives change industries? Do you guys have any real advice on changing without having to go solo or opening a new personal project?"
+      </div>
+      <div class="comment-translation">
+        這部片很酷，但有個問題——廣告創意人要怎麼轉換跑道？有沒有什麼不需要自己創業、也不用單打獨鬥就能成功轉型的方式？哪些產業正在蓬勃發展，而且真的需要創意人才？
+      </div>
+    </div>
+
+    <!-- Comment 4 - feral child (high likes) -->
+    <div class="comment-card critical">
+      <div class="comment-header">
+        <div class="comment-avatar" style="background:linear-gradient(135deg,#8e44ad,#c0392b);">F</div>
+        <div class="comment-meta">
+          <div class="name">@feralchild2633</div>
+          <div class="date">3 年前・美術指導</div>
+        </div>
+        <span class="comment-tag tag-critical">深度批判</span>
+      </div>
+      <div class="comment-original">
+        "I don't know how i feel about this... I think this stays really on the surface of it... Most of us do useless digital campaigns that are just annoying... At the end of the day, your creativity helps multi-million dollars companies make more cash..."
+      </div>
+      <div class="comment-translation">
+        我不確定自己對這部片有什麼感覺。它只停留在表面，完全忽略了那些不在紐約、沒有大咖資源、只是在小代理商默默工作的數百萬創意人的現實。<br><br>
+        我們多數人做的，是那些令人厭煩的數位廣告——人們想跳過的東西，是入侵他人生活的內容，或偽裝成「內容行銷」的廣告。少數人有機會做真正有意義的事。<br><br>
+        到頭來，你的創意只是在幫助那些無知董事會的公司多賺錢。即便你獨立出去創業，你依然是在為資本服務。<br><br>
+        那些「你不滿意就去改變它」的說法，本質上就是「你累了？那就更努力工作吧」的變體。廣告創意人賣掉了自己的靈魂，期待擁有一份讓創意有意義的工作。但在絕大多數情況下，它完全沒有意義。<br><br>
+        我就這樣站在這個產業的邊緣，既鄙視它的目的，卻又不會任何其他的東西。我不知道有沒有人讀到這裡，但至少，我把積在心裡的話說出來了。
+      </div>
+      <div class="likes-badge hot">👍 82 ・本頁最高讚留言</div>
+    </div>
+
+    <!-- Comment 5 - JustAGuyRichie -->
+    <div class="comment-card critical">
+      <div class="comment-header">
+        <div class="comment-avatar" style="background:linear-gradient(135deg,#e67e22,#c0392b);">J</div>
+        <div class="comment-meta">
+          <div class="name">@JustAGuyRichie</div>
+          <div class="date">3 年前</div>
+        </div>
+        <span class="comment-tag tag-critical">直接批評</span>
+      </div>
+      <div class="comment-original">
+        "...it's kind of egocentric people gathering other egocentric people around themselves and realizing how bad it is... The solution is not to build an own agency. That's exactly the egocentrism."
+      </div>
+      <div class="comment-translation">
+        我喜歡這部片的攝影與敘事，但它根本沒有提出任何真正的觀點。這更像是一群自我中心的人聚在一起，意識到當每個人都只為自己的自我而工作時，環境有多糟糕——而解方「去開自己的代理商」，恰恰就是他說的那種自我中心主義的具體展現。對不起，我說得很直，但我也是圈內人。
+      </div>
+      <div class="likes-badge hot">👍 13</div>
+    </div>
+
+    <!-- Comment 6 - PillowTrips (most insightful) -->
+    <div class="comment-card" style="border-left:3px solid #9b59b6;">
+      <div class="comment-header">
+        <div class="comment-avatar" style="background:linear-gradient(135deg,#9b59b6,#2980b9);">P</div>
+        <div class="comment-meta">
+          <div class="name">@PillowTrips</div>
+          <div class="date">3 年前</div>
+        </div>
+        <span class="comment-tag tag-insight">產業洞察</span>
+      </div>
+      <div class="comment-original">
+        "While clients insist on a retainer as opposed to project fees, creativity is no longer a valued skill... Now we hunt for Getty Images and write manifestos..."
+      </div>
+      <div class="comment-translation">
+        當客戶堅持用月費制而非專案費制，創意就不再是有價值的技能，而是一種隨時可以召喚的「服務」，讓所有點子都變得一文不值。我待過那種三年內把同一個品牌提案重做了十遍的代理商，可能只是為了看結果，從來沒有真正想做成什麼。<br><br>
+        我懷念那個以專案計費的時代——當年點子是有成本的，客戶要改稿就要付費，那時的作品真的是優秀的。但現在，我們都在翻找 Getty 圖庫，寫一篇宣言稿，拼湊出一個「看起來像廣告」的東西，給那些連腦補一個概念都做不到的客戶看。
+      </div>
+      <div class="likes-badge hot">👍 46 ・高讚洞察</div>
+    </div>
+
+    <!-- Comment 7 - devinoneill -->
+    <div class="comment-card critical">
+      <div class="comment-header">
+        <div class="comment-avatar" style="background:linear-gradient(135deg,#27ae60,#2980b9);">D</div>
+        <div class="comment-meta">
+          <div class="name">@devinoneill3854</div>
+          <div class="date">3 年前</div>
+        </div>
+        <span class="comment-tag tag-critical">陰謀論視角</span>
+      </div>
+      <div class="comment-original">
+        "gee, i wonder why Togetherr / Fiverr might be motivated to create a documentary about the glorious opportunities represented by the collapse and fragmentation of the agency model. always remember that collective bargaining power is crucial."
+      </div>
+      <div class="comment-translation">
+        我很好奇，為什麼 Togetherr / Fiverr 這類接案平台，會有動力去拍一部關於傳統代理商模式正在瓦解的紀錄片呢？這部片推廣的「碎片化自由接案市場」的未來，正好符合這些平台的商業利益，從而壓低了廣告創意人作為群體的集體議價能力。請永遠記得：集體談判的力量才是關鍵。
+      </div>
+    </div>
+
+    <!-- Comment 8 - cooperolson -->
+    <div class="comment-card critical">
+      <div class="comment-header">
+        <div class="comment-avatar" style="background:linear-gradient(135deg,#e74c3c,#8e44ad);">C</div>
+        <div class="comment-meta">
+          <div class="name">@cooperolson9143</div>
+          <div class="date">3 年前</div>
+        </div>
+        <span class="comment-tag tag-critical">犀利評論</span>
+      </div>
+      <div class="comment-original">
+        "In a year or so, check in with the guy who just signed a lease on his 'event/retail/office' space in Brooklyn and see what kind of compromises he's made to stay in business..."
+      </div>
+      <div class="comment-translation">
+        影片前半段的受訪者對廣告業的商業現實很誠實，但然後「勵志開關」被打開，後半段充滿了酷炫髮型和迷人口音的「我在做自己的東西」、「我對點子充滿熱情」。<br><br>
+        再過一年，去看看那個剛在布魯克林簽下「活動/零售/辦公室」空間租約的人，看看他為了繼續營業做了什麼樣的妥協。也去看看 Anouk 一年後有沒有重回廣告業——很可能是去了這部片裡某個人的公司，那才叫真正高明的人脈操作。
+      </div>
+      <div class="likes-badge">👍 1</div>
+    </div>
+
+    <!-- Comment 9 - dieski25 -->
+    <div class="comment-card critical">
+      <div class="comment-header">
+        <div class="comment-avatar" style="background:linear-gradient(135deg,#f39c12,#e74c3c);">D</div>
+        <div class="comment-meta">
+          <div class="name">@dieski25</div>
+          <div class="date">3 年前</div>
+        </div>
+        <span class="comment-tag tag-critical">結構性批判</span>
+      </div>
+      <div class="comment-original">
+        "...the solution is not to build an own agency... We'll either end up with too many agencies scrambling for clients that they'll have to bend over or we just become full fledged artists..."
+      </div>
+      <div class="comment-translation">
+        影片揭露了大型代理商的問題，但它的「解方」讓我感到矛盾。如果所有人都去開獨立代理商，只會出現太多公司搶食同樣的客戶，最後還是得委曲求全。這部片對話的深度，還不足以真正撼動那些坐在白板前掌控預算的人的思維。
+      </div>
+      <div class="likes-badge hot">👍 9</div>
+    </div>
+
+    <!-- Comment 10 - jackzen -->
+    <div class="comment-card resonance">
+      <div class="comment-header">
+        <div class="comment-avatar green">J</div>
+        <div class="comment-meta">
+          <div class="name">@jackzen4556</div>
+          <div class="date">3 年前・廣告業 25 年資歷</div>
+        </div>
+        <span class="comment-tag tag-resonance">老手觀點</span>
+      </div>
+      <div class="comment-original">
+        "I've been in this business over 25 years and this is the same situation I dealt with entering into the industry then, and it's the same now... Starting your own agency is not going to 'change' anything... A business needs to make money to pay bills, taxes, rent..."
+      </div>
+      <div class="comment-translation">
+        我在廣告業超過 25 年，這些問題跟我剛入行時完全一樣。唯一改變的是創意的交付方式，以及追求好作品的機會越來越窄——現在一切都被速度、數據和 ROI 驅動。<br><br>
+        自己開代理商不會「改變」任何事。聽起來很好聽，但時間一長，你還是會為了吃飯接那些你不想接的案子。一家公司需要賺錢付帳單、付稅、付租金，更重要的是讓員工能養活家人。<br><br>
+        儘管如此，我仍然認為這是一個很棒的行業，我仍然熱愛它，也仍然因為看見有熱情加入的年輕創意人而感到興奮。
+      </div>
+      <div class="likes-badge hot">👍 1</div>
+    </div>
+
+    <!-- Comment 11 - angelheaded -->
+    <div class="comment-card critical">
+      <div class="comment-header">
+        <div class="comment-avatar" style="background:linear-gradient(135deg,#555,#333);">A</div>
+        <div class="comment-meta">
+          <div class="name">@angelheaded</div>
+          <div class="date">3 年前</div>
+        </div>
+        <span class="comment-tag tag-critical">最毒舌批評</span>
+      </div>
+      <div class="comment-original">
+        "Hilarious! One empty platitude after another... We're selling crap that people don't need for the benefit of Wall Street."
+      </div>
+      <div class="comment-translation">
+        太好笑了！一個空洞的老生常談接著另一個。這正是我覺得在這行工作最煩躁、最無聊的原因——「我們要顛覆一切」、「我們要改變世界」。哈。我們是在為華爾街的利益，把人們根本不需要的東西賣給他們而已。
+      </div>
+      <div class="likes-badge hot">👍 7</div>
+    </div>
+
+    <!-- Comment 12 - southapedia -->
+    <div class="comment-card" style="border-left:3px solid #9b59b6;">
+      <div class="comment-header">
+        <div class="comment-avatar" style="background:linear-gradient(135deg,#16a085,#2980b9);">S</div>
+        <div class="comment-meta">
+          <div class="name">@southapedia3471</div>
+          <div class="date">2 年前</div>
+        </div>
+        <span class="comment-tag tag-insight">產業洞察</span>
+      </div>
+      <div class="comment-original">
+        "Working on a project to project fee means they can fire you at any point... they refused to give me a retainer and then I had to turn down other nice projects like from Apple..."
+      </div>
+      <div class="comment-translation">
+        專案制代表客戶隨時可以拋棄你。我親身經歷過：一個大客戶拒絕給月費，我為了這個案子推掉了包括蘋果在內的其他邀約，結果因為生病錯過一個截止日，隔天就被踢出局。<br><br>
+        收費方式應該要反映「價值」——就像一棟房子會增值，一個好的品牌識別也會增值。但現實是，客戶永遠能找到更廉價、更絕望的人來頂替你。
+      </div>
+    </div>
+
+    <!-- Comment 13 - javier -->
+    <div class="comment-card resonance">
+      <div class="comment-header">
+        <div class="comment-avatar green">J</div>
+        <div class="comment-meta">
+          <div class="name">@javiersilvasignorelli9102</div>
+          <div class="date">3 年前・剛入行的 24 歲新人</div>
+        </div>
+        <span class="comment-tag tag-resonance">新人視角</span>
+      </div>
+      <div class="comment-original">
+        "I am 24 years old and after a year trying to get into the industry I just managed to get a decent paid position... It is somehow scary to see all these comments of the industry falling just when im getting into it but really, i am more inspired than scared."
+      </div>
+      <div class="comment-translation">
+        我 24 歲，在努力了一年之後，終於找到了第一份不是無薪實習的廣告工作。看到所有關於「產業正在崩潰」的留言，在我剛踏進來的時候，確實有點嚇人。但說真的，我感到的是更多的激勵，而不是恐懼。謝謝這部片帶來的這一劑強心針，來得正是時候。
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CONCLUSION -->
+  <section class="conclusion">
+    <div class="conclusion-inner">
+      <p class="section-label">結語</p>
+      <h2>一個產業的照妖鏡</h2>
+      <p>《Kill Your Darlings》試圖講述一個「尋找初心、打破體制」的熱血故事，以 Anouk 的勇敢辭職作為結局。</p>
+      <p>但影片底下的留言，卻是另一個故事的開始——那些日復一日做著無聊 Banner 廣告、拿著不夠看的薪水、連辭職都沒有攝影師記錄的基層廣告人，用他們的憤怒、嘲諷與真實心聲，補上了這部片刻意留白的那一半。</p>
+      <div class="final-quote">
+        「我就這樣站在這個產業的邊緣，既鄙視它的目的，卻又不會任何其他的東西。至少，我把積在心裡的話說出來了。」
+        <br><span style="font-size:0.8rem; color:#555; font-style:normal;">— @feralchild2633，82 讚留言</span>
+      </div>
+      <p style="color:#555;">這也許才是這整件事最真實的總結。</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>本頁為紀錄片《Kill Your Darlings》之中文內容整理，供非英語母語人士參考。影片版權歸原作者所有。</p>
+  </footer>
+
+
+</body></html>
